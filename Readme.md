@@ -170,7 +170,7 @@ Deploy the contents of the `dist/` folder after running `npm run build`.
 
 ## 👨‍💼 Author
 
-**Omar Alfayed**  
+**Omar Abdelghani**  
 - GitHub: [@Engomarabdelghani](https://github.com/Engomarabdelghani))
 - Portfolio: [[Omar_Portfolio](https://omarabdelghani-portfolio.netlify.app/)]
 
@@ -180,5 +180,5 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ---
 
-**Made with ❤️ by Omar Alfayed**
+**Made with ❤️ by Omar Abdelghani**
 
