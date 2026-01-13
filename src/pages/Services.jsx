@@ -1,17 +1,27 @@
-import { motion } from 'framer-motion'
-import Card from '../components/Card'
-import Section from '../components/Section'
-import SectionTitle from '../components/SectionTitle'
-import Button from '../components/Button'
-import { ArrowRight, BookOpen, Zap, Wrench, Award, Check } from 'lucide-react'
-import { Link } from 'react-router-dom'
+// src/pages/Services.jsx
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import Card from '../components/Card';
+import Section from '../components/Section';
+import SectionTitle from '../components/SectionTitle';
+import Button from '../components/Button';
+import { ArrowRight, BookOpen, Zap, Wrench, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+// Import service images
+import consultImg from '../images/Consult.jpg';
+import smartImg from '../images/smart.jpeg';
+import afterSalesImg from '../images/after-sales.jpg';
 
 export default function Services() {
+  const [openServiceIndex, setOpenServiceIndex] = useState(null);
+
   const services = [
     {
       icon: BookOpen,
       title: 'Consult Before You Order',
       description: 'Technical support from university professors, specialists, and expert engineers.',
+      fullDescription: 'Expert consultation from academic professionals, customized technical assessments, best practices guidance, risk assessment and mitigation.',
       color: 'from-blue-500 to-blue-600',
       benefits: [
         'Expert consultation from academic professionals',
@@ -19,11 +29,14 @@ export default function Services() {
         'Best practices guidance',
         'Risk assessment and mitigation',
       ],
+      Image: consultImg,
+      // pdfUrl: '/src/PDFs/Consultation.pdf',
     },
     {
       icon: Zap,
       title: 'Smart Supply',
       description: 'Providing the latest engineering technologies and advanced equipment.',
+      fullDescription: 'Cutting-edge engineering equipment, latest technological innovations, competitive pricing, reliable and timely delivery.',
       color: 'from-cyan-500 to-blue-500',
       benefits: [
         'Cutting-edge engineering equipment',
@@ -31,11 +44,14 @@ export default function Services() {
         'Competitive pricing',
         'Reliable and timely delivery',
       ],
+      Image: smartImg,
+      pdfUrl: '/src/PDFs/VR-Engnieering.pdf',
     },
     {
       icon: Wrench,
       title: 'After-Sales Services',
       description: 'Continuous technical support and proactive maintenance.',
+      fullDescription: '24/7 technical support, preventive maintenance programs, quick response times, extended equipment lifecycle.',
       color: 'from-indigo-500 to-purple-600',
       benefits: [
         '24/7 technical support',
@@ -43,20 +59,10 @@ export default function Services() {
         'Quick response times',
         'Extended equipment lifecycle',
       ],
+      Image: afterSalesImg,
+      // pdfUrl: '/src/PDFs/AfterSales.pdf',
     },
-    {
-      icon: Award,
-      title: 'Workshop Training',
-      description: 'Practical, hands-on workshops for engineering and academic institutions.',
-      color: 'from-purple-500 to-pink-600',
-      benefits: [
-        'Hands-on practical training',
-        'Expert-led workshops',
-        'Customized curricula',
-        'Certification programs',
-      ],
-    },
-  ]
+  ];
 
   return (
     <>
@@ -77,9 +83,9 @@ export default function Services() {
 
       {/* Services Grid */}
       <Section bgColor="bg-white">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => {
-            const IconComponent = service.icon
+            const IconComponent = service.icon;
             return (
               <Card key={index} delay={index * 0.1}>
                 <div className="p-8 h-full flex flex-col">
@@ -116,7 +122,7 @@ export default function Services() {
         />
 
         {services.map((service, index) => {
-          const IconComponent = service.icon
+          const IconComponent = service.icon;
           return (
             <motion.div
               key={index}
@@ -125,11 +131,23 @@ export default function Services() {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center mb-16 last:mb-0`}
             >
+              {/* Image */}
               <div className="flex-1">
-                <div className={`w-full h-80 bg-gradient-to-br ${service.color} rounded-3xl shadow-lg flex items-center justify-center`}>
-                  <IconComponent size={80} className="text-white opacity-80" />
-                </div>
+                <motion.div
+                  className="flex-1 relative w-full h-80 rounded-3xl shadow-lg overflow-hidden"
+                  animate={{ scale: [1, 1.02, 1] }}
+                  transition={{ duration: 6, repeat: Infinity }}
+                >
+                  <img
+                    src={service.Image}
+                    alt={service.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-100/150 to-primary-700/60" />
+                </motion.div>
               </div>
+
+              {/* Text */}
               <div className="flex-1">
                 <h3 className="text-3xl font-bold text-primary-900 mb-4">
                   {service.title}
@@ -145,9 +163,55 @@ export default function Services() {
                     </div>
                   ))}
                 </div>
-                <Button variant="primary" size="md">
+
+                {/* Learn More Button */}
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={() =>
+                    setOpenServiceIndex(openServiceIndex === index ? null : index)
+                  }
+                >
                   Learn More <ArrowRight className="ml-2 inline-block" size={18} />
                 </Button>
+
+                {/* Expanded / Detailed Card */}
+                {openServiceIndex === index && (
+                  <div className="mt-6 p-6 bg-gray-50 rounded-2xl shadow-2xl border border-gray-200">
+                    <h4 className="text-xl font-bold mb-2">{service.fullDescription}</h4>
+                    <p className="text-gray-700 mb-4">
+                      {service.fullDescription || service.description}
+                    </p>
+
+                    {/* PDF Section */}
+                    {service.pdfUrl && (
+                      <div className="flex gap-4 items-center">
+                        <a
+                          href={service.pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+                        >
+                          Open PDF
+                        </a>
+                        <a
+                          href={service.pdfUrl}
+                          download
+                          className="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
+                        >
+                          Download PDF
+                        </a>
+                      </div>
+                    )}
+
+                    <button
+                      onClick={() => setOpenServiceIndex(null)}
+                      className="mt-4 text-sm text-gray-500 underline"
+                    >
+                      Close
+                    </button>
+                  </div>
+                )}
               </div>
             </motion.div>
           )

@@ -5,6 +5,7 @@ import Button from '../components/Button'
 import Card from '../components/Card'
 import Section from '../components/Section'
 import SectionTitle from '../components/SectionTitle'
+import logoImg from '../images/logo.png'
 
 export default function Home() {
   const stats = [
@@ -32,12 +33,7 @@ export default function Home() {
       description: 'Continuous technical support and proactive maintenance.',
       color: 'from-indigo-500 to-purple-600',
     },
-    {
-      icon: Award,
-      title: 'Workshop Training',
-      description: 'Practical, hands-on workshops for engineering and academic institutions.',
-      color: 'from-purple-500 to-pink-600',
-    },
+    
   ]
 
   const containerVariants = {
@@ -76,7 +72,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-primary-900 mb-6">
-              Partners in Engineering Innovation & Success
+              AL FAYED FOR SUPPLIES, IMPORT, EXPORT
             </h1>
             <p className="text-lg text-gray-700 mb-8 leading-relaxed">
               Al Fayed bridges global technology with local projects, delivering advanced engineering solutions, precision devices, and comprehensive support to universities, construction firms, and innovation hubs worldwide.
@@ -97,17 +93,28 @@ export default function Home() {
 
           {/* Illustration/Visual */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="hidden lg:flex justify-center"
+            animate={{ y: [0, -20, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="w-full h-96 rounded-3xl shadow-xl relative overflow-hidden
+                      bg-[#Fffff] border border-slate-200"
           >
-            <motion.div
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="w-full h-96 bg-gradient-to-br from-primary-500 to-primary-700 rounded-3xl shadow-2xl"
-            />
+            {/* Logo */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <img
+                src={logoImg}
+                alt="Company Logo"
+                className="w-150 h-auto
+                          object-contain
+                          brightness-110
+                          contrast-110
+                          opacity-90"
+              />
+            </div>
           </motion.div>
+
+
+
+
         </div>
 
         {/* Stats */}
@@ -151,7 +158,7 @@ export default function Home() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {services.map((service, index) => {
             const IconComponent = service.icon

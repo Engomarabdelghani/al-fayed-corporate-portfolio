@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion'
 import Card from '../components/Card'
 import Section from '../components/Section'
@@ -6,17 +7,34 @@ import Button from '../components/Button'
 import { ArrowRight, Award, Users, TrendingUp } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
+// Import university images
+import portSaidImg from '../images/universities/portsaid.png'
+import tantaImg from '../images/universities/tanta.png'
+import sohagImg from '../images/universities/sohag.png'
+import alexandriaImg from '../images/universities/Alexandria.png'
+import kafrElSheikhImg from '../images/universities/Kafr-El-Sheikh.png'
+import galalaImg from '../images/universities/Galala.png'
+import damietaImg from '../images/universities/Damietta.jpg'
+import mansouraImg from '../images/universities/mansoura.png'
+import sadatImg from '../images/universities/sadat.png'
+import nationalAuthorityImg from '../images/universities/National-Authority.png'
+import arabOrgImg from '../images/universities/Arab_Organization.png'
+import eastWestImg from '../images/universities/East-West.png'
+
 export default function Experience() {
   const universities = [
-    { name: 'Port Said University', region: 'Port Said' },
-    { name: 'Tanta University', region: 'Gharbiyah' },
-    { name: 'Sohag University', region: 'Sohag' },
-    { name: 'Alexandria University', region: 'Alexandria' },
-    { name: 'Kafr El-Sheikh University', region: 'Kafr El-Sheikh' },
-    { name: 'Galala University', region: 'Suez' },
-    { name: 'Damietta University', region: 'Damietta' },
-    { name: 'Mansoura University', region: 'Dakahlia' },
-    { name: 'Sadat City University', region: 'Monufia' },
+    { name: 'Port Said University', region: 'Port Said', image: portSaidImg },
+    { name: 'Tanta University', region: 'Gharbiyah', image: tantaImg },
+    { name: 'Sohag University', region: 'Sohag', image: sohagImg },
+    { name: 'Alexandria University', region: 'Alexandria', image: alexandriaImg },
+    { name: 'Kafr El-Sheikh University', region: 'Kafr El-Sheikh', image: kafrElSheikhImg },
+    { name: 'Galala University', region: 'Suez', image: galalaImg },
+    { name: 'Damietta University', region: 'Damietta', image: damietaImg },
+    { name: 'Mansoura University', region: 'Dakahlia', image: mansouraImg },
+    { name: 'Sadat City University', region: 'Monufia', image: sadatImg },
+    { name: 'National Authority for Military Production', region: ' New Administrative Capital', image: nationalAuthorityImg },
+    { name: 'Arab Organization for Industrialization', region: 'Cairo', image: arabOrgImg },
+    { name: 'East West International for Trading & Contracting', region: 'Monufia', image: eastWestImg },
   ]
 
   const achievements = [
@@ -99,14 +117,28 @@ export default function Experience() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               whileHover={{ y: -5 }}
-              className="bg-white p-8 rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300"
+              className="bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden"
             >
-              <div className="mb-4 h-32 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center">
-                <span className="text-white text-center font-semibold px-4">
+              {/* University Image */}
+              <div
+                className="w-full aspect-[4/3] relative rounded-xl overflow-hidden flex items-center justify-center"
+                style={{
+                  backgroundImage: `url(${uni.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              >
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/25"></div>
+
+                {/* University Name */}
+                <span className="text-white text-center font-semibold px-4 relative z-10">
                   {uni.name}
                 </span>
               </div>
-              <p className="text-gray-600 text-center font-medium">
+
+
+              <p className="text-gray-600 text-center font-medium py-4">
                 {uni.region}
               </p>
             </motion.div>
@@ -125,19 +157,19 @@ export default function Experience() {
           {[
             {
               phase: '1. Discovery',
-              description: 'We begin by deeply understanding your institution\'s unique challenges, goals, and vision for the future.',
+              description: "We begin by deeply understanding your institution's unique challenges, goals, and vision for the future.",
             },
             {
               phase: '2. Customization',
-              description: 'We design tailored solutions that align perfectly with your needs and leverage our expertise.',
+              description: "We design tailored solutions that align perfectly with your needs and leverage our expertise.",
             },
             {
               phase: '3. Implementation',
-              description: 'Our experienced team executes the plan with precision, ensuring minimal disruption and maximum value.',
+              description: "Our experienced team executes the plan with precision, ensuring minimal disruption and maximum value.",
             },
             {
               phase: '4. Support & Growth',
-              description: 'We provide ongoing support, continuous improvement, and partnership to ensure sustained success.',
+              description: "We provide ongoing support, continuous improvement, and partnership to ensure sustained success.",
             },
           ].map((item, index) => (
             <motion.div
@@ -174,22 +206,23 @@ export default function Experience() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            {
-              metric: '50+',
-              label: 'Equipment Installations',
-              description: 'Successfully deployed across partner institutions',
-            },
-            {
-              metric: '1000+',
-              label: 'Students Trained',
-              description: 'Through our comprehensive workshop programs',
-            },
-            {
-              metric: '99%',
-              label: 'Client Retention',
-              description: 'Long-term partnerships spanning multiple years',
-            },
-          ].map((item, index) => (
+              {
+                metric: '50+',
+                label: 'Equipment Installations',
+                description: 'Successfully deployed across partner institutions',
+              },
+              {
+                metric: '200+',
+                label: 'Projects Delivered',
+                description: 'Completed engineering and consultancy projects for institutions',
+              },
+              {
+                metric: '99%',
+                label: 'Client Retention',
+                description: 'Long-term partnerships spanning multiple years',
+              },
+            ]
+            .map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}

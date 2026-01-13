@@ -66,15 +66,16 @@ export default function Footer() {
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-3">
                 <Phone size={18} className="flex-shrink-0 mt-1" />
-                <span className="text-gray-300">+20 1234567890</span>
+                <span className="text-gray-300">+20 1149663112</span>
               </div>
               <div className="flex items-start gap-3">
                 <Mail size={18} className="flex-shrink-0 mt-1" />
-                <span className="text-gray-300">info@alfayed.com</span>
+                <span className="text-gray-300">mohamedfayd97@gmail.com</span>
               </div>
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="flex-shrink-0 mt-1" />
-                <span className="text-gray-300">Cairo, Egypt</span>
+                <span className="text-gray-300">Benha, Egypt</span>
+                <span className="text-gray-300">cairo, Nasser City, Egypt</span>
               </div>
             </div>
           </div>
@@ -86,22 +87,20 @@ export default function Footer() {
 
       {/* Bottom Footer */}
       <div className="container-custom py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 text-sm">
-            &copy; {currentYear} Al Fayed for Supplies, Import, Export & Contracting. All rights reserved.
-          </p>
-          <div className="flex space-x-6">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Linkedin size={20} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Facebook size={20} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Twitter size={20} />
-            </a>
-          </div>
-        </div>
+        <p className="text-gray-400 text-sm text-center md:text-left">
+          &copy; {currentYear} Al Fayed for Supplies, Import, Export & Contracting. All rights reserved. <br />
+          Built & Designed by{' '}
+          <a
+            href="https://omarabdelghani-portfolio.netlify.app/"   
+            target="_blank"                  
+            rel="Eng:OmarAbdelghani_portfolio"       
+            className="font-semibold text-primary-500 hover:underline"
+          >
+            Omar Abdelghani
+          </a>
+        </p>
+
+        
       </div>
     </footer>
   )

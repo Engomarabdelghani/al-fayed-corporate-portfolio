@@ -6,6 +6,11 @@ import Button from '../components/Button'
 import { ArrowRight, Heart, Users, Lightbulb } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
+// Import value images
+import integrityImg from '../images/Integrity.jpg'
+import relationshipsImg from '../images/Relationships.jpg'
+import teamworkImg from '../images/Teamwork.jpg'
+
 export default function Values() {
   const coreValues = [
     {
@@ -13,18 +18,21 @@ export default function Values() {
       title: 'Integrity',
       description: 'Transparency, honesty, ethics, and trust form the foundation of everything we do. We conduct our business with unwavering commitment to doing what is right, even when it is difficult.',
       color: 'from-red-500 to-pink-600',
+      Image: integrityImg,
     },
     {
       icon: Users,
       title: 'Relationships',
       description: 'We believe in building long-term partnerships that go beyond single projects. Our clients are our partners, and their success is our success.',
       color: 'from-blue-500 to-cyan-600',
+      Image: relationshipsImg,
     },
     {
       icon: Lightbulb,
       title: 'Teamwork',
       description: 'Collaboration, innovation, and a positive work culture drive us forward. We celebrate diverse perspectives and empower our teams to achieve excellence together.',
       color: 'from-yellow-500 to-orange-600',
+      Image: teamworkImg,
     },
   ]
 
@@ -69,26 +77,38 @@ export default function Values() {
         </div>
 
         {/* Values Details */}
-        <div className="mt-16 space-y-12">
-          {coreValues.map((value, index) => (
+          <div className="mt-16 space-y-12">
+            {coreValues.map((value, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}
-            >
-              <div className="flex-1">
-                <div className={`w-full h-64 bg-gradient-to-br ${value.color} rounded-3xl shadow-lg`} />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-3xl font-bold text-primary-900 mb-4">
-                  {value.title}
-                </h3>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  {value.description}
-                </p>
-              </div>
+    key={index}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: index * 0.1 }}
+    className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}
+  >
+                <div className="flex-1">
+                  <motion.div
+                    className="flex-1 relative w-full h-64 rounded-3xl shadow-lg overflow-hidden"
+                    animate={{ scale: [1, 1.02, 1] }}
+                    transition={{ duration: 6, repeat: Infinity }}
+                  >
+                    <img
+                      src={value.Image}
+                      alt={value.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-100/150 to-primary-700/60" />
+                  </motion.div>
+
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-3xl font-bold text-primary-900 mb-4">
+                    {value.title} 
+                  </h3>
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    {value.description}
+                  </p>
+                </div>
             </motion.div>
           ))}
         </div>

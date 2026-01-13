@@ -26,7 +26,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               className="font-bold text-2xl text-primary-600"
             >
-              Al Fayed
+              FUC 
             </motion.div>
           </Link>
 

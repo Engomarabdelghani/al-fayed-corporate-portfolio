@@ -5,6 +5,7 @@ import Section from '../components/Section'
 import SectionTitle from '../components/SectionTitle'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import logoImg from '../images/logo.png'
 
 export default function About() {
   const highlights = [
@@ -36,14 +37,25 @@ export default function About() {
       {/* Company Overview */}
       <Section bgColor="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+           <motion.div
+            animate={{ y: [0, -20, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="w-full h-96 rounded-3xl shadow-xl relative overflow-hidden
+                      bg-[#Fffff] border border-slate-200"
           >
-            <div className="w-full h-96 bg-gradient-to-br from-primary-500 to-primary-700 rounded-3xl shadow-lg" />
+            {/* Logo */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <img
+                src={logoImg}
+                alt="Company Logo"
+                className="w-150 h-auto
+                          object-contain
+                          brightness-110
+                          contrast-110
+                          opacity-90"
+              />
+            </div>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
